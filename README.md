@@ -6,4 +6,6 @@ I have a 6502 running on a breadboard and the Address bus, Data bus, R/W line an
 
 As the ROM is being simulated this makes it very easy to write some assembly and run it without actually programming an EEPROM.
 
+This will never run fast, I don't really care about that for now.
+
 ![Alt text](Resource/Pictures/Photo%201.jpeg)
