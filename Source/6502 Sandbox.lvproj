@@ -15,6 +15,7 @@
 			<Item Name="SRAM.vi" Type="VI" URL="../SRAM.vi"/>
 		</Item>
 		<Item Name="6502 Clock Gen And EEPROM Simulator.vi" Type="VI" URL="../6502 Clock Gen And EEPROM Simulator.vi"/>
+		<Item Name="EEPROM.lvclass" Type="LVClass" URL="../EEPROM/EEPROM.lvclass"/>
 		<Item Name="IO.lvclass" Type="LVClass" URL="../IO/IO.lvclass"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
@@ -203,6 +204,7 @@
 				<Item Name="DTbl Digital Size.vi" Type="VI" URL="/&lt;vilib&gt;/Waveform/DTblOps.llb/DTbl Digital Size.vi"/>
 				<Item Name="DTbl Uncompress Digital.vi" Type="VI" URL="/&lt;vilib&gt;/Waveform/DTblOps.llb/DTbl Uncompress Digital.vi"/>
 				<Item Name="DWDT Uncompress Digital.vi" Type="VI" URL="/&lt;vilib&gt;/Waveform/DWDTOps.llb/DWDT Uncompress Digital.vi"/>
+				<Item Name="High Resolution Relative Seconds.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/High Resolution Relative Seconds.vi"/>
 			</Item>
 			<Item Name="nilvaiu.dll" Type="Document" URL="nilvaiu.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
