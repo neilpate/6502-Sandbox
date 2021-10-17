@@ -10,10 +10,6 @@
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
-		<Item Name="Sub VIs" Type="Folder">
-			<Item Name="Initialise EEPROM.vi" Type="VI" URL="../Initialise EEPROM.vi"/>
-			<Item Name="SRAM.vi" Type="VI" URL="../SRAM.vi"/>
-		</Item>
 		<Item Name="6502 Clock Gen And EEPROM Simulator.vi" Type="VI" URL="../6502 Clock Gen And EEPROM Simulator.vi"/>
 		<Item Name="EEPROM.lvclass" Type="LVClass" URL="../EEPROM/EEPROM.lvclass"/>
 		<Item Name="IO.lvclass" Type="LVClass" URL="../IO/IO.lvclass"/>
