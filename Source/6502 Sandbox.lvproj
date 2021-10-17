@@ -12,12 +12,12 @@
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
 		<Item Name="Sub VIs" Type="Folder">
 			<Item Name="Initialise Address Bus.vi" Type="VI" URL="../Initialise Address Bus.vi"/>
-			<Item Name="Initialise Clock.vi" Type="VI" URL="../Initialise Clock.vi"/>
 			<Item Name="Initialise Data Bus.vi" Type="VI" URL="../Initialise Data Bus.vi"/>
 			<Item Name="Initialise EEPROM.vi" Type="VI" URL="../Initialise EEPROM.vi"/>
 			<Item Name="SRAM.vi" Type="VI" URL="../SRAM.vi"/>
 		</Item>
 		<Item Name="6502 Clock Gen And EEPROM Simulator.vi" Type="VI" URL="../6502 Clock Gen And EEPROM Simulator.vi"/>
+		<Item Name="Clock Generator.lvclass" Type="LVClass" URL="../Clock Generator/Clock Generator.lvclass"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="DAQmx Create Channel (AI-Acceleration-4 Wire DC Voltage).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/create/channels.llb/DAQmx Create Channel (AI-Acceleration-4 Wire DC Voltage).vi"/>
