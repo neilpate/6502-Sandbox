@@ -5,49 +5,23 @@
 	
 reset:	
 	lda #$0		;Store 0 in accumulator
-	sta $00		;$00 will hold the current count just for display purposes
-	ldx #$00	;X will hold the current count
-	ldy #$09	;Y will hold the current count in the loop
+	ldx #$0		;X will hold the current count
+	jmp start
+
+first:
+	jmp first
 
 
-loop:
-	stx $00		;$00 will hold the X, just for debug
-	sty $01		;$01 will hold the Y, just for debug
+start:
 	inx
-	dey			;Zero flag will get set if Y ever reaches zero
-	;dey
-	cpy #$07
+	txa
+	sta $00		;Store the current count in $00 just for debug
 	
-	bne loop	;Branch if not equal to zero
-				;Essentially loop back if not yet zero
-
-	ldy $50		;Reset the counter in Y
-	sty $01		;$01 will hold the Y, just for debug
+	cmp #5		;Compare accumulator value to 5		
+	beq reset	;Zero flag will be set when the count reaches 5
+				;Want to stop counting at this point, so branch out of the loop
 	
-;	jmp loop	;Start again
-
-
-	;lda $00		;Store the counter in the accumulator
-	;sta $01, X	;Store the counter into the A+X register
-
-	;inc $00		;Increment the counter
-	
-	;inx
-
-
-	;cmp #$5		;If A gets to 5 we want to loop around
-
-
-	;ldx $00		;Store the counter in X
-
-	;beq loop
-
-
-	;jmp loop
-
-
-	;jmp reset
-
+	jmp start
 
 	.org $fffc
 	.word reset

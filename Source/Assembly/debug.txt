@@ -1,2 +1,3 @@
 reset $8000
-loop $8008
+first $8007
+start $800a
