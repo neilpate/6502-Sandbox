@@ -1,3 +1,3 @@
 reset $8000
-first $8007
-start $800a
+loop $8004
+resety $8012
