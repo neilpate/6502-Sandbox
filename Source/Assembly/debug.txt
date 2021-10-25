@@ -1,3 +1,3 @@
-reset $7000
-loop $7004
-resety $7012
+reset $8000
+loop $8004
+resety $8012
