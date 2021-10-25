@@ -15,6 +15,7 @@
 			<Item Name="Run All Tests.vi" Type="VI" URL="../Test/Run All Tests.vi"/>
 		</Item>
 		<Item Name="6502 Clock Gen And EEPROM Simulator.vi" Type="VI" URL="../6502 Clock Gen And EEPROM Simulator.vi"/>
+		<Item Name="Initialise.vi" Type="VI" URL="../Initialise.vi"/>
 		<Item Name="EEPROM.lvclass" Type="LVClass" URL="../EEPROM/EEPROM.lvclass"/>
 		<Item Name="RAM.lvclass" Type="LVClass" URL="../RAM/RAM.lvclass"/>
 		<Item Name="IO.lvclass" Type="LVClass" URL="../IO/IO.lvclass"/>
