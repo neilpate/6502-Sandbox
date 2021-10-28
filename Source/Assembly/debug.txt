@@ -1,1 +1,7 @@
+via $6000
+via_regb $6000
+via_rega $6001
+via_ddrb $6002
+via_ddra $6003
 reset $8000
+loop $800a
