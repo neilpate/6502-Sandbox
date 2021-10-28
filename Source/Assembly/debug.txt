@@ -4,4 +4,5 @@ via_rega $6001
 via_ddrb $6002
 via_ddra $6003
 reset $8000
-loop $800a
+loop $800c
+skipreset $8018

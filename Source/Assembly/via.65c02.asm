@@ -15,14 +15,24 @@ reset:
 
 	lda #$00	;Want to set DDRA to all input
 	sta VIA_DDRA
+	
+	ldx #$00	;X is going to be used as the counter
 		
 
 loop:
-
+	inx
+	stx $0			;Store it in RAM $00, just for debugging
+	
 	lda VIA_REGA	;Read Port A
-	sta $0			;Store it in RAM $00, just for debugging
 
-	sta VIA_REGB	;Output it to Port B
+	and #$01		;Mask out all bits other than the lowest which 
+					;is where the switch is attached to
+
+	bne skipreset
+	ldx #$00		;Reset the counter					
+
+skipreset:
+	stx VIA_REGB	;Output the counter to Port B
 
 	jmp loop
 
