@@ -20,6 +20,7 @@
 		<Item Name="IO.lvclass" Type="LVClass" URL="../IO/IO.lvclass"/>
 		<Item Name="Memory Map.lvclass" Type="LVClass" URL="../Memory Map/Memory Map.lvclass"/>
 		<Item Name="Memory.lvclass" Type="LVClass" URL="../Memory/Memory.lvclass"/>
+		<Item Name="Disassembler.lvclass" Type="LVClass" URL="../Disassembler/Disassembler.lvclass"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Application Directory.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Application Directory.vi"/>
