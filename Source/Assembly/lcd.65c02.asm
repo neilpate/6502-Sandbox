@@ -31,6 +31,31 @@ lcd_rwb_demo:
 	sta VIA_REGA
 	rts
 
+lcd_set_display_on:
+	//        1DCB
+	lda #%00001111		//(D)isplay on, (C)ursor off, (B)link off
+	
+	sta VIA_REGB
+	jsr lcd_pulse_e
+	rts
+
+lcd_clear_display:
+	lda #%00000001		//Blink on, cursor on, display on
+	sta VIA_REGB
+	jsr lcd_pulse_e
+	rts
+
+lcd_pulse_e:
+	lda #$00
+	sta VIA_REGA
+
+	lda #LCD_E	
+	sta VIA_REGA
+
+	lda #$00
+	sta VIA_REGA
+	rts
+
 reset:	
 	lda #$ff	;Want to set DDRB to all output
 	sta VIA_DDRB
@@ -39,12 +64,16 @@ reset:
 	 			;The rest should be inputs
 	sta VIA_DDRA
 
+	jsr lcd_set_display_on
+
+	jsr lcd_clear_display
+
 flip_flop:
 
-	jsr lcd_rs_demo
-	jsr lcd_rwb_demo
-	jsr lcd_e_demo
-	jmp flip_flop
+//	jsr lcd_rs_demo
+//	jsr lcd_rwb_demo
+//	jsr lcd_e_demo
+//	jmp flip_flop
 
 
 //	lda #$ff

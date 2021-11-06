@@ -9,5 +9,8 @@ lcd_e $0020
 lcd_e_demo $8000
 lcd_rs_demo $8006
 lcd_rwb_demo $800c
-reset $8012
-flip_flop $801c
+lcd_set_display_on $8012
+lcd_clear_display $801b
+lcd_pulse_e $8024
+reset $8034
+flip_flop $8044
