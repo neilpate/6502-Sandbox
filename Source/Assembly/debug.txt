@@ -3,6 +3,11 @@ via_regb $6000
 via_rega $6001
 via_ddrb $6002
 via_ddra $6003
-reset $8000
-loop $800c
-skipreset $8018
+lcd_rs $0080
+lcd_rwb $0040
+lcd_e $0020
+lcd_e_demo $8000
+lcd_rs_demo $8006
+lcd_rwb_demo $800c
+reset $8012
+flip_flop $801c
