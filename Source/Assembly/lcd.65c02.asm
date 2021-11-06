@@ -15,21 +15,7 @@
 
 
 	.org $8000
-	
-lcd_e_demo:
-	lda #LCD_E
-	sta VIA_REGA
-	rts
 
-lcd_rs_demo:
-	lda #LCD_RS
-	sta VIA_REGA
-	rts
-
-lcd_rwb_demo:
-	lda #LCD_RWB
-	sta VIA_REGA
-	rts
 
 lcd_set_display_on:
 	//        1DCB
@@ -46,19 +32,78 @@ lcd_clear_display:
 	rts
 
 lcd_output_hello:
-	lda #%00000001		
+	lda #'H'			
 	sta VIA_REGB
-	jsr lcd_pulse_e
+	jsr lcd_pulse_e_data
+	
+	lda #'e'	
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'l'	
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'l'	
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'o'	
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #' '			
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'A'		
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'l'		
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'e'		
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'x'		
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'i'		
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+	
+	lda #'s'		
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+
+
 	rts
 
 lcd_pulse_e:
-	lda #$00
+	lda #LCD_E
 	sta VIA_REGA
 
 	lda #LCD_E	
 	sta VIA_REGA
 
 	lda #$00
+	sta VIA_REGA
+	rts
+
+lcd_pulse_e_data:
+	lda #LCD_RS
+	sta VIA_REGA
+
+	lda #(LCD_E || LCD_RS)	
+	
+	lda #$a0
+	sta VIA_REGA
+
+	lda #LCD_RS
 	sta VIA_REGA
 	rts
 
@@ -73,7 +118,6 @@ reset:
 
 	jsr lcd_set_display_on
 	jsr lcd_clear_display
-
 	jsr lcd_output_hello
 
 

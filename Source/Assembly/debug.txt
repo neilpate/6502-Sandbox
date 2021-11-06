@@ -6,11 +6,9 @@ via_ddra $6003
 lcd_rs $0080
 lcd_rwb $0040
 lcd_e $0020
-lcd_e_demo $8000
-lcd_rs_demo $8006
-lcd_rwb_demo $800c
-lcd_set_display_on $8012
-lcd_clear_display $801b
-lcd_output_hello $8024
-lcd_pulse_e $802d
-reset $803d
+lcd_set_display_on $8000
+lcd_clear_display $8009
+lcd_output_hello $8012
+lcd_pulse_e $8073
+lcd_pulse_e_data $8083
+reset $8095
