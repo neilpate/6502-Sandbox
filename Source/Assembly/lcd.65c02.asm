@@ -40,7 +40,13 @@ lcd_set_display_on:
 	rts
 
 lcd_clear_display:
-	lda #%00000001		//Blink on, cursor on, display on
+	lda #%00000001		
+	sta VIA_REGB
+	jsr lcd_pulse_e
+	rts
+
+lcd_output_hello:
+	lda #%00000001		
 	sta VIA_REGB
 	jsr lcd_pulse_e
 	rts
@@ -64,37 +70,12 @@ reset:
 	 			;The rest should be inputs
 	sta VIA_DDRA
 
-	jsr lcd_set_display_on
 
+	jsr lcd_set_display_on
 	jsr lcd_clear_display
 
-flip_flop:
+	jsr lcd_output_hello
 
-//	jsr lcd_rs_demo
-//	jsr lcd_rwb_demo
-//	jsr lcd_e_demo
-//	jmp flip_flop
-
-
-//	lda #$ff
-//	sta VIA_REGA
-//	sta VIA_REGB
-
-//	lda #LCD_E
-//	sta VIA_REGA
-
-	// lda #LCD_RS
-	// sta VIA_REGA
-
-	// lda #$4e	;'N'
-	// sta VIA_REGA
-
-	// ;Now pulse the Enable line
-	// lda #(LCD_RS | LCD_E)
-	// sta VIA_REGB
-	
-	// lda #LCD_RS
-	// sta VIA_REGB
 
 
 	.org $fffc

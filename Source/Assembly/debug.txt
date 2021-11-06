@@ -11,6 +11,6 @@ lcd_rs_demo $8006
 lcd_rwb_demo $800c
 lcd_set_display_on $8012
 lcd_clear_display $801b
-lcd_pulse_e $8024
-reset $8034
-flip_flop $8044
+lcd_output_hello $8024
+lcd_pulse_e $802d
+reset $803d
