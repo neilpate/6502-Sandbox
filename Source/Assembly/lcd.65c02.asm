@@ -12,7 +12,7 @@
 	LCD_RWB		.equ $40	;PORTA_6
 	LCD_E		.equ $20	;PORTA_5
 
-
+	BUTTON_STATE	.equ	$00
 
 	.org $8000
 
@@ -21,7 +21,8 @@ helloLucas:		.byte  "Hello Lucas", $0
 
 check_button:
 	lda VIA_REGA
-	sta $0
+	and #$01		//Check only the lowest bit
+	sta BUTTON_STATE			//Using $00 to store the button state
 	rts
 
 
@@ -39,12 +40,28 @@ lcd_clear_display:
 	jsr lcd_pulse_e
 	rts
 
+	lcd_function_set:
+	//      1DNFXX
+	lda #%00111000		//(D)8 bit mode, N 2 line mode, F font
+	
+	sta VIA_REGB
+	jsr lcd_pulse_e
+	rts
+
 lcd_output_hello:
-	ldx #$0
+	ldx #$0		//X will be used to index over the string, reset to the first position
 
 lcd_output_hello_inner:
-	lda helloLucas, x 			
+	lda BUTTON_STATE	//1 when button is released
+						//0 when button is pressed
+	beq button_pressed
+	lda helloAlexis, x	
+	jmp continue
 
+button_pressed:				
+	lda helloLucas, x 			
+	
+continue:	
 	//the string is terminated with a null character
 	//jump out if this is detected (the Z flag will be set)
 	beq lcd_output_done	
@@ -92,11 +109,13 @@ reset:
 	 			;The rest should be inputs
 	sta VIA_DDRA
 
+	jsr lcd_function_set
 	jsr lcd_set_display_on
 	jsr lcd_clear_display
 
 main_loop:
 	jsr check_button
+	jsr lcd_clear_display
 	jsr lcd_output_hello
 	jmp main_loop
 
