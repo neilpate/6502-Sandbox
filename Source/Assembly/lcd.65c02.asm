@@ -16,6 +16,8 @@
 
 	.org $8000
 
+helloAlexis:	.byte  "Hello Alexis", $0
+	
 
 lcd_set_display_on:
 	//        1DCB
@@ -31,7 +33,7 @@ lcd_clear_display:
 	jsr lcd_pulse_e
 	rts
 
-lcd_output_hello:
+lcd_output_hello1:
 	lda #'H'			
 	sta VIA_REGB
 	jsr lcd_pulse_e_data
@@ -79,9 +81,28 @@ lcd_output_hello:
 	lda #'s'		
 	sta VIA_REGB
 	jsr lcd_pulse_e_data
-
-
 	rts
+
+lcd_output_hello_loop:
+	ldx #$0
+
+lcd_output_hello_loop_inner:
+	lda helloAlexis, x 			
+
+	//the string is terminated with a null character
+	//jump out if this is detected (the Z flag will be set)
+	beq lcd_output_done	
+	sta VIA_REGB
+	jsr lcd_pulse_e_data
+
+	inx		//X is being used to track the index into the string
+
+	jmp lcd_output_hello_loop_inner
+
+lcd_output_done: 
+	rts
+
+
 
 lcd_pulse_e:
 	lda #LCD_E
@@ -118,7 +139,7 @@ reset:
 
 	jsr lcd_set_display_on
 	jsr lcd_clear_display
-	jsr lcd_output_hello
+	jsr lcd_output_hello_loop
 
 
 
