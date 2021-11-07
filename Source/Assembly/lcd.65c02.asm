@@ -17,7 +17,13 @@
 	.org $8000
 
 helloAlexis:	.byte  "Hello Alexis", $0
-	
+helloLucas:		.byte  "Hello Lucas", $0	
+
+check_button:
+	lda VIA_REGA
+	sta $0
+	rts
+
 
 lcd_set_display_on:
 	//        1DCB
@@ -33,61 +39,11 @@ lcd_clear_display:
 	jsr lcd_pulse_e
 	rts
 
-lcd_output_hello1:
-	lda #'H'			
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'e'	
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'l'	
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'l'	
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'o'	
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #' '			
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'A'		
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'l'		
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'e'		
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'x'		
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'i'		
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	
-	lda #'s'		
-	sta VIA_REGB
-	jsr lcd_pulse_e_data
-	rts
-
-lcd_output_hello_loop:
+lcd_output_hello:
 	ldx #$0
 
-lcd_output_hello_loop_inner:
-	lda helloAlexis, x 			
+lcd_output_hello_inner:
+	lda helloLucas, x 			
 
 	//the string is terminated with a null character
 	//jump out if this is detected (the Z flag will be set)
@@ -97,7 +53,7 @@ lcd_output_hello_loop_inner:
 
 	inx		//X is being used to track the index into the string
 
-	jmp lcd_output_hello_loop_inner
+	jmp lcd_output_hello_inner
 
 lcd_output_done: 
 	rts
@@ -136,12 +92,13 @@ reset:
 	 			;The rest should be inputs
 	sta VIA_DDRA
 
-
 	jsr lcd_set_display_on
 	jsr lcd_clear_display
-	jsr lcd_output_hello_loop
 
-
+main_loop:
+	jsr check_button
+	jsr lcd_output_hello
+	jmp main_loop
 
 	.org $fffc
 	.word reset
