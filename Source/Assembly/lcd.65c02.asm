@@ -14,7 +14,7 @@
 
 	BUTTON_STATE	.equ	$00
 
-	.org $8000
+	.org $E000
 
 helloAlexis:	.byte  "Hello Alexis", $0
 helloLucas:		.byte  "Hello Lucas", $0	
