@@ -14,6 +14,7 @@
 		<Item Name="Tests" Type="Folder">
 			<Item Name="Run All Tests.vi" Type="VI" URL="../Test/Run All Tests.vi"/>
 		</Item>
+		<Item Name="Scratch" Type="Folder"/>
 		<Item Name="6502 Clock Gen And EEPROM Simulator.vi" Type="VI" URL="../6502 Clock Gen And EEPROM Simulator.vi"/>
 		<Item Name="Measure Clock Frequency.vi" Type="VI" URL="../Measure Clock Frequency.vi"/>
 		<Item Name="Initialise.vi" Type="VI" URL="../Initialise.vi"/>
