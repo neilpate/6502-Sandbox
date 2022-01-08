@@ -22,6 +22,7 @@
 		<Item Name="Memory Map.lvclass" Type="LVClass" URL="../Memory Map/Memory Map.lvclass"/>
 		<Item Name="Memory.lvclass" Type="LVClass" URL="../Memory/Memory.lvclass"/>
 		<Item Name="Disassembler.lvclass" Type="LVClass" URL="../Disassembler/Disassembler.lvclass"/>
+		<Item Name="Hex Viewer.lvclass" Type="LVClass" URL="../Hex Viewer/Hex Viewer.lvclass"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="Application Directory.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Application Directory.vi"/>
@@ -588,6 +589,7 @@
 				<Item Name="DAQmx Start Task.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/task.llb/DAQmx Start Task.vi"/>
 				<Item Name="DAQmx Control Task.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/task.llb/DAQmx Control Task.vi"/>
 				<Item Name="DAQmx Clear Task.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/task.llb/DAQmx Clear Task.vi"/>
+				<Item Name="LVRowAndColumnTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVRowAndColumnTypeDef.ctl"/>
 			</Item>
 			<Item Name="nilvaiu.dll" Type="Document" URL="nilvaiu.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
