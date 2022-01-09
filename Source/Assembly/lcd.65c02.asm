@@ -25,7 +25,6 @@ check_button:
 	sta BUTTON_STATE			//Using $00 to store the button state
 	rts
 
-
 lcd_set_display_on:
 	//        1DCB
 	lda #%00001111		//(D)isplay on, (C)ursor off, (B)link off
@@ -75,8 +74,6 @@ continue:
 lcd_output_done: 
 	rts
 
-
-
 lcd_pulse_e:
 	lda #LCD_E
 	sta VIA_REGA
@@ -101,14 +98,17 @@ lcd_pulse_e_data:
 	sta VIA_REGA
 	rts
 
-reset:	
+setup_via:	
 	lda #$ff	;Want to set DDRB to all output
 	sta VIA_DDRB
 
 	lda #$e0	;Want to set top three pins of PORTA as output
 	 			;The rest should be inputs
 	sta VIA_DDRA
+	rts
 
+reset:	
+	jsr setup_via
 	jsr lcd_function_set
 	jsr lcd_set_display_on
 	jsr lcd_clear_display
