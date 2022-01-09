@@ -9,3 +9,6 @@ As the ROM is being simulated this makes it very easy to write some assembly and
 This will never run fast, I don't really care about that for now.
 
 ![Alt text](Resource/Pictures/Photo%201.jpeg)
+
+![Alt text](Resource/Pictures/Hex%20Viewer.png)
+
