@@ -107,7 +107,11 @@ setup_via:
 	sta VIA_DDRA
 	rts
 
-reset:	
+reset:
+	ldx #$ff
+	txs
+
+
 	jsr setup_via
 	jsr lcd_function_set
 	jsr lcd_set_display_on
