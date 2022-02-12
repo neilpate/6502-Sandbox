@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "6502")(type "Legacy")(uri "C:/dev/6502-Sandbox/Doc/Schematic/6502-kicad-library-master/65xx.lib")(options "")(descr ""))
+)
