@@ -14,7 +14,7 @@
 
 	BUTTON_STATE	.equ	$00
 
-	.org $E000
+	.org $8000
 
 helloAlexis:	.byte  "Hello Alexis", $0
 helloLucas:		.byte  "Hello Lucas", $0	
@@ -40,7 +40,7 @@ lcd_clear_display:
 	jsr lcd_pulse_e
 	rts
 
-	lcd_function_set:
+lcd_function_set:
 	//      1DNFXX
 	lda #%00111000		//(D)8 bit mode, N 2 line mode, F font
 	
