@@ -93,7 +93,14 @@ setup_via:
 	sta LCD_CONTROL_DIR
 	rts
 
-reset:	
+reset:
+	//Set the stack pointer to $ff
+	ldx #$ff
+	txs	
+
+	sei	//Disable interrupts
+	cld	//Turn decimal mode off
+
 	jsr setup_via
 	jsr lcd_configure_display
 	jsr lcd_clear_display
