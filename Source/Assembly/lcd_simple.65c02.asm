@@ -29,8 +29,7 @@ lcd_return_home:
 
 lcd_configure_display:
 	//        1DCB
-	lda #%00001100		//(D)isplay on, (C)ursor on/ff, (B)link on/off
-	
+	lda #%00001100		//(D)isplay on, (C)ursor on/off, (B)link on/off
 	sta LCD_DATA
 	jsr lcd_pulse_e
 	rts
@@ -38,15 +37,12 @@ lcd_configure_display:
 lcd_function_set:
 	//      1DNFXX
 	lda #%00111000		//(D)8 bit mode, N 2 line mode, F font
-	
 	sta LCD_DATA
 	jsr lcd_pulse_e
 	rts
 
-
 lcd_pulse_e:
 	//This routines assumes E is low to start
-
 	//Set E high
 	lda #LCD_E
 	sta LCD_CONTROL
