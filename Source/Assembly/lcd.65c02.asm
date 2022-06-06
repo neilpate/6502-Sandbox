@@ -1,10 +1,10 @@
 	.target "6502"
 
-	VIA 		.equ $6000
-	VIA_REGB	.equ VIA + 0
-	VIA_REGA	.equ VIA + 1
-	VIA_DDRB 	.equ VIA + 2
-	VIA_DDRA 	.equ VIA + 3
+	VIA 				.equ $6000
+	LCD_DATA			.equ VIA + 0
+	LCD_CONTROL			.equ VIA + 1
+	LCD_DATA_DIR 		.equ VIA + 2
+	LCD_CONTROL_DIR 	.equ VIA + 3
 	
 
 	;LCD
@@ -20,31 +20,33 @@ helloAlexis:	.byte  "Hello Alexis", $0
 helloLucas:		.byte  "Hello Lucas", $0	
 
 check_button:
-	lda VIA_REGA
+	lda LCD_CONTROL
 	and #$01		//Check only the lowest bit
 	sta BUTTON_STATE			//Using $00 to store the button state
 	rts
 
 
-lcd_set_display_on:
-	//        1DCB
-	lda #%00001111		//(D)isplay on, (C)ursor off, (B)link off
-	
-	sta VIA_REGB
+lcd_clear_display:
+	lda #%00000001		
+	sta LCD_DATA
 	jsr lcd_pulse_e
 	rts
 
-lcd_clear_display:
-	lda #%00000001		
-	sta VIA_REGB
+
+lcd_configure_display:
+	//        1DCB
+	lda #%00001100		//(D)isplay on, (C)ursor on/off, (B)link on/off
+	
+	sta LCD_DATA
 	jsr lcd_pulse_e
 	rts
+
 
 lcd_function_set:
 	//      1DNFXX
 	lda #%00111000		//(D)8 bit mode, N 2 line mode, F font
 	
-	sta VIA_REGB
+	sta LCD_DATA
 	jsr lcd_pulse_e
 	rts
 
@@ -65,7 +67,7 @@ continue:
 	//the string is terminated with a null character
 	//jump out if this is detected (the Z flag will be set)
 	beq lcd_output_done	
-	sta VIA_REGB
+	sta LCD_DATA
 	jsr lcd_pulse_e_data
 
 	inx		//X is being used to track the index into the string
@@ -78,39 +80,48 @@ lcd_output_done:
 
 
 lcd_pulse_e:
+	//This routines assumes E is low to start
+
+	//Set E high
 	lda #LCD_E
-	sta VIA_REGA
+	sta LCD_CONTROL
 
-	lda #LCD_E	
-	sta VIA_REGA
-
+	//Set E low
 	lda #$00
-	sta VIA_REGA
+	sta LCD_CONTROL
 	rts
 
 lcd_pulse_e_data:
-	lda #LCD_RS
-	sta VIA_REGA
-
-	lda #(LCD_E || LCD_RS)	
 	
-	lda #$a0
-	sta VIA_REGA
-
+	//First set RS high
 	lda #LCD_RS
-	sta VIA_REGA
+	sta LCD_CONTROL
+
+	//Then while keeping RS high pulse the Enable
+	lda #(LCD_E | LCD_RS)	
+	sta LCD_CONTROL
+
+	//Then bring E low while keeping RS high
+	lda #LCD_RS
+	sta LCD_CONTROL
+
 	rts
 
-reset:	
+setup_via:	
+	//Port B is the 8 data lines
 	lda #$ff	;Want to set DDRB to all output
-	sta VIA_DDRB
+	sta LCD_DATA_DIR
 
+	//Port A is the 3 control lines 
 	lda #$e0	;Want to set top three pins of PORTA as output
-	 			;The rest should be inputs
-	sta VIA_DDRA
+	sta LCD_CONTROL_DIR
+	rts
 
-	jsr lcd_function_set
-	jsr lcd_set_display_on
+
+reset:	
+	jsr setup_via
+	jsr lcd_configure_display
+	//jsr lcd_function_set
 	jsr lcd_clear_display
 
 main_loop:
