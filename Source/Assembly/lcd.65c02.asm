@@ -118,7 +118,14 @@ setup_via:
 	rts
 
 
-reset:	
+reset:
+	//Set the stack pointer to $ff
+	ldx #$ff
+	txs	
+
+	sei	//Disable interrupts
+	cld	//Turn decimal mode off	
+	
 	jsr setup_via
 	jsr lcd_configure_display
 	//jsr lcd_function_set
